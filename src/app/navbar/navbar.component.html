@@ -17,8 +17,9 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" 
+        [(ngModel)]="username" name="username" (keyup)="findProfile()">
+        <button class="btn btn-outline-" type="submit" style="color: white;">Search</button>
       </form>
     </div>
   </div>
