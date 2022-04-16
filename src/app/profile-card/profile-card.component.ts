@@ -7,16 +7,16 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./profile-card.component.css']
 })
 export class ProfileCardComponent implements OnInit {
-  username: string;
-  profile: any[];
-  repos: any[];
+  username!: string;
+  profile!: any[];
+  repos!: any[];
 
   constructor(private profileservice: ProfileService) { 
-    this.profileservice.getdata().subscribe((profile: any[])=>{
+    this.profileservice.getProfileInfo().subscribe(profile => {
       console.log(profile);
       this.profile = profile;
     });
-    this.profileservice.getdata().subscribe((repos : any[])=>{
+    this.profileservice.getProfileRepos().subscribe(repos =>{
       console.log(repos);
       this.repos = repos;
     });
@@ -24,11 +24,11 @@ export class ProfileCardComponent implements OnInit {
 
   findProfile(){
     this.profileservice.updateProfile(this.username);
-    this.profileservice.getdata().subscribe((profile: any[]) => {
+    this.profileservice.getProfileInfo().subscribe(profile => {
       console.log(profile);
       this.profile = profile;
     });
-    this.profileservice.getProfileRepos().subscribe((repos: any[]) => {
+    this.profileservice.getProfileRepos().subscribe(repos => {
       console.log(repos);
       this.repos = repos;
     });
