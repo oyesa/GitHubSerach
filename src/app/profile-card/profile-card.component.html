@@ -15,6 +15,15 @@
                       </ul>
                   </div>
                   <div class="buttons"> <button class="btn btn-outline-primary px-4"><a href="{{profile.html_url}}">View Profile in GitHub</a></button></div>
+                  <div class="panel panel defaule">
+                    <div class="panel-header">
+                      <h5>Repositories</h5>
+                    </div>
+                    <div class="panel-body" *ngFor="let repo of repos">
+                      <p> {{profile.name}} <a href="{{repo.html_url}}">View this project on GitHub</a></p>
+                      <p>{{repo.description}}</p>
+                    </div>
+                  </div>
               </div>
           </div>
       </div>
