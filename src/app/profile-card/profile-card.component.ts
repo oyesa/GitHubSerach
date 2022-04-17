@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../user';
+import { Repository } from '../repository';
+
 
 @Component({
   selector: 'app-profile-card',
@@ -7,16 +11,17 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./profile-card.component.css']
 })
 export class ProfileCardComponent implements OnInit {
-  username!: string;
-  profile!: any[];
-  repos!: any[];
+  username: string;
+  profile: any[];
+  repos: any[];
 
-  constructor(private profileservice: ProfileService) { 
-    this.profileservice.getProfileInfo().subscribe(profile => {
+
+  constructor(private profileservice: ProfileService, http:HttpClient) { 
+    this.profileservice.getProfileInfo().subscribe((profile: any[])=>{
       console.log(profile);
       this.profile = profile;
     });
-    this.profileservice.getProfileRepos().subscribe(repos =>{
+    this.profileservice.getProfileRepos().subscribe((repos:any[]) =>{
       console.log(repos);
       this.repos = repos;
     });
@@ -24,18 +29,30 @@ export class ProfileCardComponent implements OnInit {
 
   findProfile(){
     this.profileservice.updateProfile(this.username);
-    this.profileservice.getProfileInfo().subscribe(profile => {
+    this.profileservice.getProfileInfo().subscribe((profile:any[]) => {
       console.log(profile);
       this.profile = profile;
     });
-    this.profileservice.getProfileRepos().subscribe(repos => {
+    this.profileservice.getProfileRepos().subscribe((repos:any[]) => {
       console.log(repos);
       this.repos = repos;
     });
 
   }
 
+  // function findProfile() {
+  //   throw new Error('Function not implemented.');
+  // }
+
   ngOnInit(): void {
+    // interface ApiResponse{
+    //  name:string, 
+    //  login:string, 
+    //  bio:string,
+    //  avatar_url:any[],
+    //  html_url:any[],
+    //  public_repo:any[]
+    // }
   }
 
 }

@@ -11,6 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RepoComponent } from './repo/repo.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
+import { DateCounterPipe } from './date-counter.pipe';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
     NavbarComponent,
     FooterComponent,
     RepoComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
+    DateCounterPipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
