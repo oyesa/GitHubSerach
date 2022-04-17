@@ -34,13 +34,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 
 ### Technologies Used
-* Angular
-* Typescript
-* HTML
-* CSS
-* Bootstrap
-* Font- awesome
-* Angular Bootstrap
+* HTML was used in making the skeleton of the website.
+* CSS and Bootstrap was used in styling the document.
+* Vscode was the source code editor of choice.
+* Git and Github were used as my local and online repositories respectively.
+* AngularCLI was used in creating the components/classes/directives/pipes needed in the web-app
+* Github's API and Access Token was used in creating the connection to Github.
+
 
 ### Bugs
 No known bugs

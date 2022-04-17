@@ -1,29 +1,25 @@
 
 <hr>
-<br>
+<form class="d-flex">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" 
+  [(ngModel)]="username" name="username" (keyup)="findProfile()">
+  <button class="btn btn-outline-" type="submit" style="color: white;">Search</button>
+</form>
+<hr>
 <div class="container mt-5">
   <div class="row d-flex justify-content-center" *ngIf="profile">
       <div class="col-md-7">
           <div class="card p-3 py-4">
               <div class="text-center"> <img src="{{profile.avatar_url}}" width="100" class="rounded-circle"> </div>
-              <div class="text-center mt-3"> <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
+              <div class="text-center mt-3"> 
                   <h5 class="mt-2 mb-0">{{profile.name}}</h5> <br> <small >{{profile.login}}</small>
                   <div class="px-4 mt-1">
                       <ul class="list-group">
                         <li class="list-group-items" *ngIf="profile.bio">{{profile.bio}}</li>
-                        <li class="list-group-items">{{profile.public_repo}}</li>
+                        <button class="btn btn-outline-primary px-4"><a href="{{profile.html_url}}">View Profile in GitHub</a></button>
                       </ul>
                   </div>
-                  <div class="buttons"> <button class="btn btn-outline-primary px-4"><a href="{{profile.html_url}}">View Profile in GitHub</a></button></div>
-                  <div class="panel panel defaule">
-                    <div class="panel-header">
-                      <h5>Repositories</h5>
-                    </div>
-                    <div class="panel-body" *ngFor="let repo of repos">
-                      <p> {{profile.name}} <a href="{{repo.html_url}}">View this project on GitHub</a></p>
-                      <p>{{repo.description}}</p>
-                    </div>
-                  </div>
+                  <div><app-repo></app-repo></div>
               </div>
           </div>
       </div>
