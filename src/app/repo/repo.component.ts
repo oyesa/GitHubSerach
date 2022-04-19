@@ -13,9 +13,11 @@ export class RepoComponent implements OnInit {
   profile: User;
   repos: any[];
   repo:Repository
+  repoData= []
+  profileservice:ProfileService;
   
 
-  constructor( private profileservice: ProfileService) {}
+  constructor(profileservice: ProfileService) {}
 
   findProfile(username:string){
     this.profileservice.getProfileRepos(username).then(()=> {
@@ -27,8 +29,9 @@ export class RepoComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.findProfile('oyesa');
+    this.repoData = this.profileservice.repoData
     
   }
 

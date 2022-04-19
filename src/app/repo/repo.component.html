@@ -21,7 +21,7 @@
   </div>
 </div>  -->
 
-<div class="showmyRepositories">
+<div class="myRepositories">
   <h2 class="text-center">Repositories</h2>
   <div class="row">
       <div class="col-md-12">
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-3">
               <div class="label label-primary mx-2">
-                <small> {{repo.dateCreated | dateCounter}}</small>
+                <small> Created: {{repo.created_at | dateCounter}}</small>
               </div>
             </div>
           </div>
@@ -45,5 +45,4 @@
         </div>
       </div>
     </div>
-  
 </div>

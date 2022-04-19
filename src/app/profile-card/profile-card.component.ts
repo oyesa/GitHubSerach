@@ -4,6 +4,7 @@ import { ProfileService } from '../profile.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../user';
 import { Repository } from '../repository';
+import { Router } from '@angular/router';
 
 
 
@@ -17,9 +18,16 @@ export class ProfileCardComponent implements OnInit {
   profile: User;
   repo:Repository;
   repos: any[];
+  profileserveice:ProfileService;
+  repoData = [];
+
  
 
-  constructor(public profileservice: ProfileService){}
+  constructor(public profileservice: ProfileService, public router:Router){}
+
+  // goToUrl(id){
+  //   this.router.navigate(['/repository',id])
+  // }
 
   findProfile(username:string){
     this.profileservice.getProfileInfo(username).then((success)=>{
@@ -63,8 +71,9 @@ export class ProfileCardComponent implements OnInit {
 
   // }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.findProfile('oyesa');
+    this.repoData = this.profileservice.repoData;
   }
 
 }

@@ -14,6 +14,7 @@ import { Repository } from './repository';
 export class ProfileService {
   profile: User;
   repo: Repository;
+  repoData = []
 
 
   constructor(private http: HttpClient) { 
@@ -52,21 +53,28 @@ export class ProfileService {
 
   }
 
+// Getting  repo properties from Api
 
   getProfileRepos(username:string){
     interface ApiResponse {
       name: string;
       html_url: string;
       description:string;
-      dateCreated: Date;
+      created_at: Date;
     }
 
     let repoUrl = 'https://api.github.com/users/'+username+'/repos?order=created&sort=asc?client_id='+environment.clientid + '&client_secret='+environment.clientsecret;
     let promise = new Promise<void>((resolve,reject) =>{
-      this.http.get<ApiResponse>(repoUrl).toPromise().then
+      this.http.get<any>(repoUrl).toPromise().then
       (response => {
-          this.repo = response;
-          console.log(this.repo);
+        
+        // Loop through repos
+        this.repoData.length = 0 
+        for(let i = 0; i < response.length; i++) {
+          this.repo = new Repository(response[i].name, response[i].html_url, response[i].description, response[i].created_at);
+          this.repoData.push(this.repo);
+        }
+
         resolve()
       },
       error=>{
@@ -77,16 +85,4 @@ export class ProfileService {
       })
       return promise;
   }
-
-  // getProfileInfo(){
-  //   return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" + this.clientid + "&client_secret=" + this.clientsecret);
-  // }
-
-  // getProfileRepos(){
-  //   return this.http.get("https://api.github.com/users/" + this.username + "/repos?client_id=" + this.clientid + "&client_secret=" + this.clientsecret);
-  // }
-
-  // updateProfile(username: string){
-  //   this.username =  this.username;
-  // }
 }

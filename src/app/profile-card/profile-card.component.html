@@ -13,7 +13,9 @@
                         <p class="list-group-items" *ngIf="profile.bio">{{profile.bio}}</p>
                         <p><i class="fa fa-users" aria-hidden="true"></i>
                         {{profile.followers}} Followers   |   {{profile.following}}Following</p>
-                        <button class="btn btn-outline-primary px-4"><a href="{{profile.html_url}}">View Profile on GitHub</a></button>
+                        <button class="btn btn-dark px-4"><a href="{{profile.html_url}}" class="text-white">View Profile on GitHub</a></button>
+                        <br>
+                        <!-- <a class="btn btn-dark btn-xs fs17" routerLink='./repo' routerLinkActive='active'>View Repositories</a> -->
                   </div>                
               </div>
           </div>
@@ -26,19 +28,20 @@
         <h2 class="text-center">Repositories</h2>
         <div class="row">
             <div class="col-md-12">
-              <div *ngFor="let repo of repos">
+              <div *ngFor="let repo of repoData">
                 <div class="row">
                   <div class="col-md-8">
                     <h4>
-                      <a  class= "text-light "href="{{ repo.html_url }}" target="_blank">{{
+                      <a class= "url" href="{{ repo.html_url }}" target="_blank">{{
                         repo.name
                       }}</a>
                     </h4>
                     <p>{{ repo.description }}</p>
+                    <footer> Created: {{repo.created_at | dateCounter}}</footer>
                   </div>
                   <div class="col-md-3">
                     <div class="label label-primary mx-2">
-                      <small> {{repo.dateCreated | dateCounter}}</small>
+                      <!-- <small> {{repo.created_at | dateCounter}}</small> -->
                     </div>
                   </div>
                 </div>
