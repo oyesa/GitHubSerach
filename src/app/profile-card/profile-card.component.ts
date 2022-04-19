@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { ProfileService } from '../profile.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../user';
 import { Repository } from '../repository';
+
+
 
 
 @Component({
@@ -11,48 +14,57 @@ import { Repository } from '../repository';
   styleUrls: ['./profile-card.component.css']
 })
 export class ProfileCardComponent implements OnInit {
-  username: string;
-  profile: any[];
+  profile: User;
+  repo:Repository;
   repos: any[];
+ 
 
+  constructor(public profileservice: ProfileService){}
 
-  constructor(private profileservice: ProfileService, http:HttpClient) { 
-    this.profileservice.getProfileInfo().subscribe((profile: any[])=>{
-      console.log(profile);
-      this.profile = profile;
+  findProfile(username:string){
+    this.profileservice.getProfileInfo(username).then((success)=>{
+      this.profile = this.profileservice.profile;
+    },
+    (error)=>{
+      console.log(error)
     });
-    this.profileservice.getProfileRepos().subscribe((repos:any[]) =>{
-      console.log(repos);
-      this.repos = repos;
-    });
-  }
 
-  findProfile(){
-    this.profileservice.updateProfile(this.username);
-    this.profileservice.getProfileInfo().subscribe((profile:any[]) => {
-      console.log(profile);
-      this.profile = profile;
+    this.profileservice.getProfileRepos(username).then((success)=>{
+      this.repo = this.profileservice.repo;
+    },
+    (error)=>{
+      console.log(error)
     });
-    this.profileservice.getProfileRepos().subscribe((repos:any[]) => {
-      console.log(repos);
-      this.repos = repos;
-    });
+    
 
   }
 
-  // function findProfile() {
-  //   throw new Error('Function not implemented.');
+  // constructor(private profileservice: ProfileService, http:HttpClient) { 
+  //   this.profileservice.getProfileInfo().subscribe((profile: any[])=>{
+  //     console.log(profile);
+  //     this.profile = profile;
+  //   });
+  //   this.profileservice.getProfileRepos().subscribe((repos:any[]) =>{
+  //     console.log(repos);
+  //     this.repos = repos;
+  //   });
+  // }
+
+  // findProfile(){
+  //   this.profileservice.updateProfile(this.username);
+  //   this.profileservice.getProfileInfo().subscribe((profile:any[]) => {
+  //     console.log(profile);
+  //     this.profile = profile;
+  //   });
+  //   this.profileservice.getProfileRepos().subscribe((repos:any[]) => {
+  //     console.log(repos);
+  //     this.repos = repos;
+  //   });
+
   // }
 
   ngOnInit(): void {
-    // interface ApiResponse{
-    //  name:string, 
-    //  login:string, 
-    //  bio:string,
-    //  avatar_url:any[],
-    //  html_url:any[],
-    //  public_repo:any[]
-    // }
+    this.findProfile('oyesa');
   }
 
 }

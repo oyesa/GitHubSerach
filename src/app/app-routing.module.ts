@@ -5,10 +5,8 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { RepoComponent } from './repo/repo.component';
 
 const routes: Routes = [
-  {path:"home",component:AppComponent},
-  {path:"profile-card",component:ProfileCardComponent},
-  {path:"repositories",component:RepoComponent},
-  {path:"",redirectTo:"personal",pathMatch:"full"},
+  { path: 'profile-card', component: ProfileCardComponent},
+  { path: 'Repositories', component: RepoComponent},
 ];
 
 @NgModule({

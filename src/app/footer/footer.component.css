@@ -15,3 +15,14 @@ body {
   background: #8E24AA;
   background: linear-gradient(to right, #8E24AA, #8E24AA);
 }
+
+.icons .fa {
+  margin: 0 13px;
+  cursor: pointer;
+  padding: 18px 0;
+  text-align: center;
+}
+
+#sticky-footer{
+  color: white;
+}

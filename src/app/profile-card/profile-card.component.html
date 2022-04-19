@@ -1,11 +1,7 @@
 
-<hr>
-<form class="d-flex">
-  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" 
-  [(ngModel)]="username" name="username" (keyup)="findProfile()">
-  <button class="btn btn-outline-" type="submit" style="color: white;">Search</button>
-</form>
-<hr>
+<br>
+<app-search-profile (searchReturn)="findProfile($event)"></app-search-profile>
+
 <div class="container mt-5">
   <div class="row d-flex justify-content-center" *ngIf="profile">
       <div class="col-md-7">
@@ -14,14 +10,71 @@
               <div class="text-center mt-3"> 
                   <h5 class="mt-2 mb-0">{{profile.name}}</h5> <br> <small >{{profile.login}}</small>
                   <div class="px-4 mt-1">
-                      <ul class="list-group">
-                        <li class="list-group-items" *ngIf="profile.bio">{{profile.bio}}</li>
-                        <button class="btn btn-outline-primary px-4"><a href="{{profile.html_url}}">View Profile in GitHub</a></button>
-                      </ul>
-                  </div>
-                  <div><app-repo></app-repo></div>
+                        <p class="list-group-items" *ngIf="profile.bio">{{profile.bio}}</p>
+                        <p><i class="fa fa-users" aria-hidden="true"></i>
+                        {{profile.followers}} Followers   |   {{profile.following}}Following</p>
+                        <button class="btn btn-outline-primary px-4"><a href="{{profile.html_url}}">View Profile on GitHub</a></button>
+                  </div>                
               </div>
           </div>
       </div>
   </div>
 </div>
+<div>
+    <hr>
+    <div class="myRepositories">
+        <h2 class="text-center">Repositories</h2>
+        <div class="row">
+            <div class="col-md-12">
+              <div *ngFor="let repo of repos">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h4>
+                      <a  class= "text-light "href="{{ repo.html_url }}" target="_blank">{{
+                        repo.name
+                      }}</a>
+                    </h4>
+                    <p>{{ repo.description }}</p>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="label label-primary mx-2">
+                      <small> {{repo.dateCreated | dateCounter}}</small>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+      </div>
+       
+
+ 
+
+
+
+
+  <!-- <div class="col-md-12">
+    <h4><strong>Repositories</strong></h4>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="height: 18rem;">
+                <div class="card-heading">
+                    <h6><a href="{{repo.html_url}}">{{repo.name}}</a></h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{repo.description}}</p>
+                </div>
+                <div class="footer">
+                   <div class="row">
+                       <div class="col-md-5">
+                        <small>{{repo.dateCreated | dateCounter}}</small>
+                       </div>
+                   </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div> -->

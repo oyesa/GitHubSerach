@@ -13,6 +13,7 @@ import { RepoComponent } from './repo/repo.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { DateCounterPipe } from './date-counter.pipe';
 import { HighlightDirective } from './highlight.directive';
+import { SearchProfileComponent } from './search-profile/search-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HighlightDirective } from './highlight.directive';
     RepoComponent,
     ProfileCardComponent,
     DateCounterPipe,
-    HighlightDirective
+    HighlightDirective,
+    SearchProfileComponent
   ],
   imports: [
     BrowserModule,

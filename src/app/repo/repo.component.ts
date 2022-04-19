@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { ProfileService } from '../profile.service';
+import { Component, OnInit } from '@angular/core';
 import { Repository } from '../repository';
 import { User } from '../user';
+import { ProfileService } from '../profile.service';
 
 
 @Component({
@@ -10,25 +10,35 @@ import { User } from '../user';
   styleUrls: ['./repo.component.css']
 })
 export class RepoComponent implements OnInit {
-  username: string;
-  profile: any[];
+  profile: User;
   repos: any[];
-  user:any[];
-  name:string;
-  html_url:string;
+  repo:Repository
+  
 
+  constructor( private profileservice: ProfileService) {}
 
-  constructor( private profileServce: ProfileService) { 
-    this.profileServce = profileServce;
+  findProfile(username:string){
+    this.profileservice.getProfileRepos(username).then(()=> {
+      this.repo = this.profileservice.repo;
+    }, (error)=> {
+      console.log(error)
+    });
+    
+
   }
-
-  getProfileRepos(){}
 
   ngOnInit(): void {
-    this.profileServce.getProfileRepos().subscribe((repos:any[]) =>{
-      console.log(repos);
-      this.repos = repos;
-    });
+    this.findProfile('oyesa');
+    
   }
+
+  // getProfileRepos(){}
+
+  // ngOnInit(): void {
+  //   this.profileServce.getProfileRepos().subscribe((repo:any[]) =>{
+  //     console.log(repo);
+  //     this.repo = repo;
+  //   });
+  // }
 
 }
