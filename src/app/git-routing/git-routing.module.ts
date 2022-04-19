@@ -7,17 +7,17 @@ import { ProfileCardComponent } from '../profile-card/profile-card.component';
 import { RepoComponent } from '../repo/repo.component';
 
 // Router links to render profile and repo components
-const routes:Routes = [
-	{ path:"gitUser",component:ProfileCardComponent }, 
-	{ path:"quotes",component:RepoComponent } 
-]
+// const routes:Routes = [
+// 	{ path:"gitUser",component:ProfileCardComponent }, 
+// 	{ path:"quotes",component:RepoComponent } 
+// ]
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     GitRoutingRoutingModule,
-    RouterModule.forRoot(routes) 
+    // RouterModule.forRoot(routes) 
   ]
 })
 export class GitRoutingModule { }
