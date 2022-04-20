@@ -6,13 +6,12 @@
 GitHub Search is a website where a user can search for a GitHub account holder and their repositories using their GitHub user name. 
 
 ### Behaviour Driven Development (BDD)
-The program should return a user's profile details when the correct username is entered in the User Profile section.
+The program should return a user's profile details and repositories when the correct username is entered in the User Profile section.
     Input Example:"Oyesa "
-    Output Example: "Oyesa's information is displayed"
+    Output Example: "Oyesa's information and all repositories are displayed"
 
 When the user clicks on the 'view repository in GitHub' button, it should redirect them to the github site for that repository.
 
-When the user clicks on 'Visit Github Site' on a user's profile they should be redirected to the user's github site.
 
 
 ### Setup/Installation Requirements
